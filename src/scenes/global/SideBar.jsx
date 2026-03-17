@@ -1,9 +1,12 @@
-import React from 'react'
-
+import React from "react";
+import {Box} from "@mui/material"
 const SideBar = () => {
   return (
-    <div>SideBar</div>
-  )
-}
+    <Box>
+      <Box></Box>
+      <Box></Box>
+    </Box>
+  );
+};
 
-export default SideBar
+export default SideBar;
