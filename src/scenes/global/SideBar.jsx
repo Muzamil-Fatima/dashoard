@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { ProSidebar, Menu, MenuItem } from "react-pro-sidebar";
+import "react-pro-sidebar/dist/css/styles.css";
 import { Box, IconButton, Typography, useTheme } from "@mui/material";
 import { Link } from "react-router-dom";
 import { tokens } from "../../theme";
@@ -27,7 +28,7 @@ const Item = ({ title, to, icon, selected, setSelected }) => {
       onClick={() => setSelected(title)}
       icon={icon}
     >
-      <Typography>{title}</Typography>
+      <Typography variant="body2">{title}</Typography>
       <Link to={to} />
     </MenuItem>
   );
@@ -38,7 +39,27 @@ const SideBar = () => {
   const [isCollapsed, setIsCollapsed] = useState(false);
   const [selected, setSelected] = useState("Dashboard");
   return (
-    <Box>
+    <Box
+      sx={{
+        height: "100vh",
+        width: isCollapsed ? "80px" : "250px", // Sidebar width
+        "& .pro-sidebar-inner": {
+          background: `${colors.primary[400]} !important`,
+        },
+        "& .pro-icon-wrapper": {
+          backgroundColor: "transparent !important",
+        },
+        "& .pro-inner-item": {
+          padding: "5px 35px 5px 20px !important",
+        },
+        "& .pro-inner-item:hover": {
+          color: "#868dfb !important",
+        },
+        "& .pro-menu-item.active": {
+          color: "#6870fa !important",
+        },
+      }}
+    >
       <ProSidebar collapsed={isCollapsed}>
         <Menu iconShape="square">
           {/* Logo And Menu Icon */}
@@ -54,7 +75,11 @@ const SideBar = () => {
                 alignItems="center"
                 ml="15px"
               >
-                <Typography variant="h3" color={colors.grey[100]}>
+                <Typography
+                  variant="h5"
+                  fontWeight="bold"
+                  color={colors.grey[100]}
+                >
                   ADMINIS
                 </Typography>
                 <IconButton onClick={() => setIsCollapsed(!isCollapsed)}>
@@ -65,7 +90,7 @@ const SideBar = () => {
           </MenuItem>
 
           {!isCollapsed && (
-            <Box mb="25px">
+            <Box mb="15px">
               <Box display="flex" justifyContent="center" alignItems="center">
                 <img
                   alt="profile-user"
@@ -77,14 +102,14 @@ const SideBar = () => {
               </Box>
               <Box textAlign="center">
                 <Typography
-                  variant="h2"
+                  variant="subtitle1"
                   color={colors.grey[100]}
                   fontWeight="bold"
                   sx={{ m: "10px 0 0 0" }}
                 >
                   Ed Roh
                 </Typography>
-                <Typography variant="h5" color={colors.greenAccent[500]}>
+                <Typography variant="body2" color={colors.greenAccent[500]}>
                   VP Fancy Admin
                 </Typography>
               </Box>
@@ -100,9 +125,9 @@ const SideBar = () => {
               setSelected={setSelected}
             />
             <Typography
-              variant="h6"
+              variant="subtitle2"
               color={colors.grey[300]}
-              sx={{ m: "15px 0 5px 20px" }}
+              sx={{ mt: 1, mb: 2, ml: 1.5 }}
             >
               Data
             </Typography>
@@ -128,7 +153,7 @@ const SideBar = () => {
               setSelected={setSelected}
             />
 
-            <Typography variant="h6" sx={{ m: "15px 0 5px 20px" }}>
+            <Typography variant="subtitle2" sx={{ mt: 1, mb: 2, ml: 1.5 }}>
               Pages
             </Typography>
             <Item
@@ -153,9 +178,9 @@ const SideBar = () => {
               setSelected={setSelected}
             />
             <Typography
-              variant="h6"
+              variant="subtitle2"
               color={colors.grey[300]}
-              sx={{ m: "15px 0 5px 20px" }}
+              sx={{ mt: 1, mb: 2, ml: 1.5 }}
             >
               Charts
             </Typography>

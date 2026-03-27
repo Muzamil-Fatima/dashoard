@@ -14,11 +14,12 @@ import SideBar from "./scenes/global/SideBar";
 import Bars from "./scenes/bars/Bars";
 function App() {
   return (
-    <>
-      <div>
-        <SideBar />
-        <main>
-          <TopBar />
+    <div style={{ display: "flex", height: "100vh" }}>
+      <SideBar />
+
+      <div style={{ flex: 1, display: "flex", flexDirection: "column", minWidth: 0 }}>
+        <TopBar />
+        <div style={{ flex: 1, padding: "20px", overflowY: "auto", minWidth: 0 }}>
           <Routes>
             <Route path="/" element={<Dashboard />} />
             <Route path="/team" element={<Team />} />
@@ -32,9 +33,9 @@ function App() {
             <Route path="/calendar" element={<Calendar />} />
             <Route path="/geography" element={<Geography />} />
           </Routes>
-        </main>
+        </div>
       </div>
-    </>
+    </div>
   );
 }
 
